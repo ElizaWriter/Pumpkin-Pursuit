@@ -116,7 +116,7 @@ function splashScreen() {
   textSize(60);
   text("Pumpkin Pursuit", width / 2, height / 4);
   textSize(20);
-  text("By Elizabeth Eloe & Erlinda Longchamp", width / 2, height / 3);
+  text("By Elizabeth Enloe & Erlinda Longchamp", width / 2, height / 3);
 
   text(
     "Use the Arrow Keys to find the real Pumpkin!",
