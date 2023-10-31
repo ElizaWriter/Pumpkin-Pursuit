@@ -77,12 +77,12 @@ function draw() {
      
   } else if (state == 22) {
     cursor();
-    winScreen();
+    winScreen2();
     allSprites.autoDraw = false;
     
   } else if (state == 23) {
     cursor();
-    winScreen();
+    winScreen3();
     allSprites.autoDraw = false;
         
   } else if (state == 24) {
@@ -328,7 +328,35 @@ function winScreen() {
   textSize(80);
   text("You Win!!", windowWidth / 2, windowHeight / 2);
   textSize(40);
-  text("Click to continue", windowWidth / 2, windowHeight / 1.5)
+  text("But there's still 3 pumpkins left to find", windowWidth / 2, windowHeight / 1.7)
+  textSize(40);
+  text("Do you wish to continue? Click if you do.", windowWidth / 2, windowHeight / 1.5)
+  //resetSketch();
+}
+
+function winScreen2() {
+  //music.stop();
+  background(98, 168, 61);
+  fill("orange");
+  textSize(80);
+  text("You Win!!", windowWidth / 2, windowHeight / 2);
+  textSize(40);
+  text("But there's still 2 pumpkins left to find", windowWidth / 2, windowHeight / 1.7)
+  textSize(40);
+  text("Do you wish to continue? Click if you do.", windowWidth / 2, windowHeight / 1.5)
+  //resetSketch();
+}
+
+function winScreen3() {
+  //music.stop();
+  background(98, 168, 61);
+  fill("orange");
+  textSize(80);
+  text("You Win!!", windowWidth / 2, windowHeight / 2);
+  textSize(40);
+  text("But there's still 1 pumpkins left to find", windowWidth / 2, windowHeight / 1.7)
+  textSize(40);
+  text("Do you wish to continue? Click if you do.", windowWidth / 2, windowHeight / 1.5)
   //resetSketch();
 }
 
@@ -338,6 +366,8 @@ function bigWinScreen() {
   fill("orange");
   textSize(120);
   text("YOU WIN!!", windowWidth / 2, windowHeight / 2);
+  textSize(40);
+  text("You are the Pumpkin King!!", windowWidth / 2, windowHeight / 1.5)
   //resetSketch();
 }
 
@@ -348,7 +378,7 @@ function loseScreen() {
   text("You Lose~", windowWidth / 2, windowHeight / 2);
   textSize(40);
   text("Click to re-try", windowWidth / 2, windowHeight / 1.5)
-  // music.stop();
+ // music.stop();
   //do we even need a lose condition?
   //resetSketch();
 }
@@ -361,11 +391,12 @@ function playerMove() {
   if (kb.pressing("up")) player.vel.y = -5;
   else if (kb.pressing("down")) player.vel.y = 5;
   else player.vel.y = 0;
+
   //player.debug = mouse.pressing(); //only enable this for testing
 }
 
 function resetSketch() {
-  // we load all of the sprites within the setup()
+    // we load all of the sprites within the setup()
   player = new Sprite();
   player.img = avatar;
   player.scale = 0.05;
