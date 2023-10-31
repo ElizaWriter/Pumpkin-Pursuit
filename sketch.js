@@ -136,26 +136,74 @@ function splashScreen() {
 function collectPumpkin() {
   if (state == 1) {
     if (player.overlaps(goal)) {
-      goal.remove();
       state = 21;
+      player.remove();
+      goal.remove();
+      moon.remove();
+      for (let i = 0; i < 5; i++) {
+      fakeMoon.remove();
+      }
+      for (let i = 0; i < 300; i++) {
+      fakePumpkins[i].remove();
+      }
+      falsePumpkins.remove();
+      for (let i = 0; i < 15; i++) {
+      wall[i].remove();
+      }
     }
   }
   if (state == 2) {
     if (player.overlaps(goal)) {
-      goal.remove();
       state = 22;
+      player.remove();
+      goal.remove();
+      moon.remove();
+      for (let i = 0; i < 5; i++) {
+      fakeMoon.remove();
+      }
+      for (let i = 0; i < 300; i++) {
+      fakePumpkins[i].remove();
+            }
+      falsePumpkins.remove();
+      for (let i = 0; i < 15; i++) {
+      wall[i].remove();
+      }
     }
   }
   if (state == 3) {
     if (player.overlaps(goal)) {
-      goal.remove();
       state = 23;
+      player.remove();
+      goal.remove();
+      moon.remove();
+      for (let i = 0; i < 5; i++) {
+      fakeMoon.remove();
+      }
+      for (let i = 0; i < 300; i++) {
+      fakePumpkins[i].remove();
+      }
+      falsePumpkins.remove();
+      for (let i = 0; i < 15; i++) {
+      wall[i].remove();
+      }
     }
   }
   if (state == 4) {
     if (player.overlaps(goal)) {
-      goal.remove();
       state = 24;
+      player.remove();
+      goal.remove();
+      moon.remove();
+      for (let i = 0; i < 5; i++) {
+       fakeMoon.remove();
+      }
+      for (let i = 0; i < 300; i++) {
+       fakePumpkins[i].remove();
+      }
+      falsePumpkins.remove();
+      for (let i = 0; i < 15; i++) {
+       wall[i].remove();
+      }
     }
   }
 }
@@ -163,22 +211,70 @@ function collectPumpkin() {
 function collectMoon() {
   if (state == 1) {
     if (player.overlaps(moon)) {
-    moon.remove();
-    state = 31;
+      state = 31;
+      player.remove();
+      goal.remove();
+      moon.remove();
+      for (let i = 0; i < 5; i++) {
+       fakeMoon.remove();
+      }
+      for (let i = 0; i < 300; i++) {
+       fakePumpkins[i].remove();
+      }
+      falsePumpkins.remove();
+      for (let i = 0; i < 15; i++) {
+       wall[i].remove();
+      }
   }}
   if (state == 2) {
     if (player.overlaps(moon)) {
-    moon.remove();
-    state = 32;
+      state = 32;
+      player.remove();
+      goal.remove();
+      moon.remove();
+      for (let i = 0; i < 5; i++) {
+       fakeMoon.remove();
+      }
+      for (let i = 0; i < 300; i++) {
+       fakePumpkins[i].remove();
+      }
+      falsePumpkins.remove();
+      for (let i = 0; i < 15; i++) {
+       wall[i].remove();
+      }
   }}
   if (state == 3) {
     if (player.overlaps(moon)) {
-    moon.remove();
+      player.remove();
+      goal.remove();
+      moon.remove();
+      for (let i = 0; i < 5; i++) {
+       fakeMoon.remove();
+      }
+      for (let i = 0; i < 300; i++) {
+       fakePumpkins[i].remove();
+      }
+      falsePumpkins.remove();
+      for (let i = 0; i < 15; i++) {
+       wall[i].remove();
+      }
     state = 33;
   }}
   if (state == 4) {
     if (player.overlaps(moon)) {
-    moon.remove();
+      player.remove();
+      goal.remove();
+      moon.remove();
+      for (let i = 0; i < 5; i++) {
+       fakeMoon.remove();
+      }
+      for (let i = 0; i < 300; i++) {
+       fakePumpkins[i].remove();
+      }
+      falsePumpkins.remove();
+      for (let i = 0; i < 15; i++) {
+       wall[i].remove();
+      }
     state = 34;
   }}
 }
@@ -190,53 +286,58 @@ function mousePressed() {
   }
   if (state == 21) {
     state = 2;
-    music.play(); //disable this to turn off the music
+    //music.play(); //disable this to turn off the music
+    resetSketch();    
   }
   if (state == 22) {
     state = 3;
-    music.play(); //disable this to turn off the music
+    //music.play(); //disable this to turn off the music
+    resetSketch(); 
   }
   if (state == 23) {
     state = 4;
-    music.play(); //disable this to turn off the music
+    //music.play(); //disable this to turn off the music
+    resetSketch(); 
   }
   if (state == 31) {
     state = 1;
-    music.play(); //disable this to turn off the music
+    resetSketch();  
+        //music.play(); //disable this to turn off the music
   }
   if (state == 32) {
     state = 2;
-    music.play(); //disable this to turn off the music
+    resetSketch();  
+    //music.play(); //disable this to turn off the music
   }
   if (state == 33) {
     state = 3;
-    music.play(); //disable this to turn off the music
+    resetSketch();  
+    //music.play(); //disable this to turn off the music
   }
   if (state == 34) {
     state = 4;
-    music.play(); //disable this to turn off the music
+    resetSketch();  
+    //music.play(); //disable this to turn off the music
   }
 }
 
 function winScreen() {
-  music.stop();
+  //music.stop();
   background(98, 168, 61);
   fill("orange");
   textSize(80);
   text("You Win!!", windowWidth / 2, windowHeight / 2);
   textSize(40);
-  text("Click to re-play", windowWidth / 2, windowHeight / 1.5)
+  text("Click to continue", windowWidth / 2, windowHeight / 1.5)
   //resetSketch();
 }
 
 function bigWinScreen() {
   music.stop();
-  background(98, 168, 61);
+  background(0,0,0);
   fill("orange");
-  textSize(80);
+  textSize(120);
   text("YOU WIN!!", windowWidth / 2, windowHeight / 2);
-  textSize(40);
-  text("Click to re-play", windowWidth / 2, windowHeight / 1.5)
   //resetSketch();
 }
 
@@ -246,25 +347,25 @@ function loseScreen() {
   textSize(80);
   text("You Lose~", windowWidth / 2, windowHeight / 2);
   textSize(40);
-  text("Click to retry", windowWidth / 2, windowHeight / 1.5)
-  music.stop();
+  text("Click to re-try", windowWidth / 2, windowHeight / 1.5)
+  // music.stop();
   //do we even need a lose condition?
   //resetSketch();
 }
 
 function playerMove() {
-  if (kb.pressing("left")) player.vel.x = -3;
-  else if (kb.pressing("right")) player.vel.x = 3;
+  if (kb.pressing("left")) player.vel.x = -5;
+  else if (kb.pressing("right")) player.vel.x = 5;
   else player.vel.x = 0;
 
-  if (kb.pressing("up")) player.vel.y = -3;
-  else if (kb.pressing("down")) player.vel.y = 3;
+  if (kb.pressing("up")) player.vel.y = -5;
+  else if (kb.pressing("down")) player.vel.y = 5;
   else player.vel.y = 0;
   //player.debug = mouse.pressing(); //only enable this for testing
 }
 
 function resetSketch() {
-    // we load all of the sprites within the setup()
+  // we load all of the sprites within the setup()
   player = new Sprite();
   player.img = avatar;
   player.scale = 0.05;
