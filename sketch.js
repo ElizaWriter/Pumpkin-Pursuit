@@ -29,78 +29,9 @@ function setup() {
   rectMode(CENTER);
   textAlign(CENTER);
   imageMode(CENTER);
+  resetSketch();
 
-  world.gravity.x.y =4;
 
-  // we load all of the sprites within the setup()
-  player = new Sprite();
-  player.img = avatar;
-  player.scale = 0.05;
-  player.width = 100;
-  player.height = 50;
-  player.rotationLock = true;
-
-  goal = new Sprite(random(width), random(height), 5, 5, "none");
-  goal.img = pumpkinImg;
-  goal.scale = 0.02;
-  goal.width = 20;
-  goal.height = 20;
-  goal.rotationLock = true;
-  
-  for (let i = 0; i < 5; i++) {
-    fakeMoon = new Sprite (random(width), random(height), 5, 5, "none");
-    fakeMoon.img = moonImg;
-    fakeMoon.scale = 0.1;
-    fakeMoon.width = 40;
-    fakeMoon.height = 40;
-    fakeMoon.rotationLock = true;
-  }
-
-  moon = new Sprite (random(width), random(height), 5, 5, "none");
-  moon.img = moonImg;
-  moon.scale = 0.1;
-  moon.width = 40;
-  moon.height = 40;
-  moon.rotationLock = true;
-
-  // these are "fake pumpkins" to confuse the player
-  for (let i = 0; i < 300; i++) {
-    let x = random(width);
-    let y = random(height);
-
-    if (x < width / 2 + 50 && x > width / 2 - 50) {
-      y = y + 50;
-
-    }
-    fakePumpkins[i] = new Sprite(x, y, random (100));
-    noStroke();
-    fakePumpkins[i].color = "orange";
-    fakePumpkins[i].mass = 35;
-  }
-
-  for (let i = 0; i <300; i++) {
-    let x = random(width);
-    let y = random(height);
-    if (x < width / 2 + 50 && x > width / 2 - 50) {
-      y = y + 50;
-    }
-    falsePumpkins = new Sprite (x,y,random(100));
-    falsePumpkins.img = falsePumpkinsImg;
-  }
-
-  // these are "haybales", you can't move these
-  for (let i = 0; i < 15; i++) {
-    fill("orange");
-    let x = random(width);
-    let y = random(height);
-    if (x < width / 2 + 50 && x > width / 2 - 50) {
-      y = y + 100;
-    }
-
-    wall[i] = new Sprite(x, y, random(40), random(100), "static");
-    wall[i].color = "yellow";
-    // wall[i].mass = 1000;
-  }
 }
 
 function draw() {
@@ -118,34 +49,60 @@ function draw() {
     collectPumpkin();
     collectMoon();
     playerMove();
-  // } else if (state == 2) {
-  //   allSprites.draw();
-  //   allSprites.autoDraw = true;
-  //   noCursor();
-  //   collectPumpkin();
-  //   collectMoon();
-  //   playerMove();
-  // } else if (state == 3) {
-  //   allSprites.draw();
-  //   allSprites.autoDraw = true;
-  //   noCursor();
-  //   collectPumpkin();
-  //   collectMoon();
-  //   playerMove();
-  // } else if (state == 4) {
-  //   allSprites.draw();
-  //   allSprites.autoDraw = true;
-  //   noCursor();
-  //   collectPumpkin();
-  //   collectMoon();
-  //   playerMove();
-  } else if (state == 20) {
+  } else if (state == 2) {
+    allSprites.draw();
+    allSprites.autoDraw = false;
+    noCursor();
+    collectPumpkin();
+    collectMoon();
+    playerMove();
+  } else if (state == 3) {
+    allSprites.draw();
+    allSprites.autoDraw = true;
+    noCursor();
+    collectPumpkin();
+    collectMoon();
+    playerMove();
+  } else if (state == 4) {
+    allSprites.draw();
+    allSprites.autoDraw = true;
+    noCursor();
+    collectPumpkin();
+    collectMoon();
+    playerMove();
+  } else if (state == 21) {
+    cursor();
+    winScreen();
+    allSprites.autoDraw = false;
+     
+  } else if (state == 22) {
     cursor();
     winScreen();
     allSprites.autoDraw = false;
     
+  } else if (state == 23) {
+    cursor();
+    winScreen();
+    allSprites.autoDraw = false;
+        
+  } else if (state == 24) {
+    cursor();
+    bigWinScreen();
+    allSprites.autoDraw = false;
     
-  } else if (state == 30) {
+  } else if (state == 31) {
+    loseScreen();
+    allSprites.autoDraw = false;
+    
+  } else if (state == 32) {
+    loseScreen();
+    allSprites.autoDraw = false;
+    
+  } else if (state == 33) {
+    loseScreen();
+    allSprites.autoDraw = false;
+    
+  } else if (state == 34) {
     loseScreen();
     allSprites.autoDraw = false;
     
@@ -177,17 +134,53 @@ function splashScreen() {
 }
   
 function collectPumpkin() {
-  if (player.overlaps(goal)) {
-    goal.remove();
-    state = 20;
+  if (state == 1) {
+    if (player.overlaps(goal)) {
+      goal.remove();
+      state = 21;
+    }
+  }
+  if (state == 2) {
+    if (player.overlaps(goal)) {
+      goal.remove();
+      state = 22;
+    }
+  }
+  if (state == 3) {
+    if (player.overlaps(goal)) {
+      goal.remove();
+      state = 23;
+    }
+  }
+  if (state == 4) {
+    if (player.overlaps(goal)) {
+      goal.remove();
+      state = 24;
+    }
   }
 }
 
 function collectMoon() {
-  if (player.overlaps(moon)) {
+  if (state == 1) {
+    if (player.overlaps(moon)) {
     moon.remove();
-    state = 30;
-  }
+    state = 31;
+  }}
+  if (state == 2) {
+    if (player.overlaps(moon)) {
+    moon.remove();
+    state = 32;
+  }}
+  if (state == 3) {
+    if (player.overlaps(moon)) {
+    moon.remove();
+    state = 33;
+  }}
+  if (state == 4) {
+    if (player.overlaps(moon)) {
+    moon.remove();
+    state = 34;
+  }}
 }
 
 function mousePressed() {
@@ -195,24 +188,32 @@ function mousePressed() {
     state = 1;
     music.play(); //disable this to turn off the music
   }
-  // if (state == 20) {
-  //   state = 2;
-  //   music.play(); //disable this to turn off the music
-  // }
-  // else if (state == 20) {
-  //   state = 3;
-  //   music.play(); //disable this to turn off the music
-  // }
-  // else if (state == 20) {
-  //   state = 4;
-  //   music.play(); //disable this to turn off the music
-  // }
-  if (state == 20) {
+  if (state == 21) {
+    state = 2;
+    music.play(); //disable this to turn off the music
+  }
+  if (state == 22) {
+    state = 3;
+    music.play(); //disable this to turn off the music
+  }
+  if (state == 23) {
+    state = 4;
+    music.play(); //disable this to turn off the music
+  }
+  if (state == 31) {
     state = 1;
     music.play(); //disable this to turn off the music
   }
-  if (state == 30) {
-    state = 1;
+  if (state == 32) {
+    state = 2;
+    music.play(); //disable this to turn off the music
+  }
+  if (state == 33) {
+    state = 3;
+    music.play(); //disable this to turn off the music
+  }
+  if (state == 34) {
+    state = 4;
     music.play(); //disable this to turn off the music
   }
 }
@@ -225,6 +226,18 @@ function winScreen() {
   text("You Win!!", windowWidth / 2, windowHeight / 2);
   textSize(40);
   text("Click to re-play", windowWidth / 2, windowHeight / 1.5)
+  //resetSketch();
+}
+
+function bigWinScreen() {
+  music.stop();
+  background(98, 168, 61);
+  fill("orange");
+  textSize(80);
+  text("YOU WIN!!", windowWidth / 2, windowHeight / 2);
+  textSize(40);
+  text("Click to re-play", windowWidth / 2, windowHeight / 1.5)
+  //resetSketch();
 }
 
 function loseScreen() {
@@ -236,6 +249,7 @@ function loseScreen() {
   text("Click to retry", windowWidth / 2, windowHeight / 1.5)
   music.stop();
   //do we even need a lose condition?
+  //resetSketch();
 }
 
 function playerMove() {
@@ -247,4 +261,79 @@ function playerMove() {
   else if (kb.pressing("down")) player.vel.y = 3;
   else player.vel.y = 0;
   //player.debug = mouse.pressing(); //only enable this for testing
+}
+
+function resetSketch() {
+    // we load all of the sprites within the setup()
+  player = new Sprite();
+  player.img = avatar;
+  player.scale = 0.05;
+  player.width = 100;
+  player.height = 50;
+  player.rotationLock = true;
+
+  goal = new Sprite(random(width), random(height), 5, 5, "none");
+  goal.img = pumpkinImg;
+  goal.scale = 0.2;
+  goal.width = 20;
+  goal.height = 20;
+  goal.rotationLock = true;
+  
+  for (let i = 0; i < 5; i++) {
+    fakeMoon = new Sprite (random(width), random(height), 5, 5, "none");
+    fakeMoon.img = moonImg;
+    fakeMoon.scale = 0.1;
+    fakeMoon.width = 40;
+    fakeMoon.height = 40;
+    fakeMoon.rotationLock = true;
+  }
+
+  moon = new Sprite (random(width), random(height), 5, 5, "none");
+  moon.img = moonImg;
+  moon.scale = 0.1;
+  moon.width = 40;
+  moon.height = 40;
+  moon.rotationLock = true;
+
+  // these are "fake pumpkins" to confuse the player
+for (let i = 0; i < 300; i++) {
+  let x = random(width);
+  let y = random(height);
+
+  if (x < width / 2 + 50 && x > width / 2 - 50) {
+    y = y + 50;
+
+  }
+  fakePumpkins[i] = new Sprite(x, y, random (100));
+  noStroke();
+  fakePumpkins[i].color = "orange";
+  fakePumpkins[i].mass = 35;
+}
+
+for (let i = 0; i <300; i++) {
+  let x = random(width);
+  let y = random(height);
+  if (x < width / 2 + 50 && x > width / 2 - 50) {
+    y = y + 50;
+  }
+  falsePumpkins = new Sprite (x,y,random(100));
+  falsePumpkins.img = falsePumpkinsImg;
+  falsePumpkins.rotationLock = true;
+}
+
+  // these are "haybales", you can't move these
+  for (let i = 0; i < 15; i++) {
+    fill("orange");
+    let x = random(width);
+    let y = random(height);
+    if (x < width / 2 + 50 && x > width / 2 - 50) {
+      y = y + 100;
+    }
+
+    wall[i] = new Sprite(x, y, random(40), random(100), "static");
+    wall[i].color = "yellow";
+    // wall[i].mass = 1000;
+  }
+
+  
 }
